@@ -19,7 +19,7 @@
   "source_files": "Pod/Classes/**/*",
   "dependencies" : {
    "Analytics": [
-      "~> 3.0"
+      "~> 4.1.0"
     ],
     "UrbanAirship-iOS-SDK": [
       "~> 11.1.0"
