@@ -71,12 +71,16 @@
     for (NSString *key in payload.properties) {
         id value = payload.properties[key];
 
+        if(value == nil) {
+            continue;
+        }
+
         if ([value isKindOfClass:[NSString class]]) {
-            [customEvent setStringProperty:value forKey:key];
+            [customEvent setProperties:@{key: value}];
         }
 
         if ([value isKindOfClass:[NSNumber class]]) {
-            [customEvent setNumberProperty:value forKey:key];
+            [customEvent setProperties:@{key: value}];
         }
     }
 
@@ -85,7 +89,7 @@
 
 - (void)group:(SEGGroupPayload *)payload {
     if (payload.groupId) {
-        [[UAirship push] addTag:payload.groupId];
+        [[UAirship channel] addTag:payload.groupId];
         [[UAirship push] updateRegistration];
     }
 }
@@ -93,7 +97,7 @@
 // Reset is invoked when the user logs out, and any data saved about the user should be cleared.
 - (void)reset {
     [UAirship namedUser].identifier = nil;
-    [UAirship push].tags = @[];
+    [UAirship channel].tags = @[];
     [[UAirship push] updateRegistration];
 }
 

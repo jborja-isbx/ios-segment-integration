@@ -1,7 +1,7 @@
 /* Copyright Airship and Contributors */
 
 #import <Foundation/Foundation.h>
-#import <Analytics/SEGIntegration.h>
+@import Segment;
 
 @interface SEGUrbanAirshipIntegration : NSObject <SEGIntegration>
 
